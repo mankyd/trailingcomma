@@ -4,5 +4,5 @@
  */
 
 exports.index = function(req, res){
-  res.render('index.jade', { title: 'Trailing Commas' })
+    res.render('index.jade', { title: 'Trailing Comma,' })
 };

@@ -34,8 +34,16 @@ var found_commas = function(commas) {
 };
 
 var add_comma = function(list, comma) {
+    var padding_chars = 20;
     var loc = comma.code;
-    loc = loc.substr(Math.max(0, comma.character - 10), 21);
+    var append_hellip = loc.length > comma.character+padding_chars;
+    loc = loc.substr(Math.max(0, comma.character - padding_chars - 1), padding_chars + 1);
+    if (comma.character > padding_chars + 1) {
+        loc = '&hellip;' + loc;
+    }
+    if (append_hellip) {
+        loc += '&hellip;';
+    }
     var dt = $('<dt><span class="line">'+comma.line+'</span><span class="char">'+comma.character+'</span></dt>');
     var dd = $('<dd>'+loc+'</ld>');
     list.append(dt);
