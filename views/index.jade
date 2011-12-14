@@ -1,10 +1,12 @@
 h1 Trailing Comma
-form.form-stacked
+form.form-stacked.find-commas
     fieldset
         div.clearfix
             label(for="code_input") Your Code
             div.input
-                textarea#code_input(name="code_input")
+                textarea.span16#code_input(name="code_input")
     div.actions
         input.btn.large.primary(type="submit", value="Find The Commas!")
 
+div.commas
+    dl

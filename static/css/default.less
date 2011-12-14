@@ -1,0 +1,42 @@
+@import 'bs/variables.less';
+
+// Grid style input sizes
+// This is a duplication of the main grid .columns() mixin, but subtracts 10px to account for input padding and border and 20px more for the form-stacked left-padding
+.formStackedColumns(@columnSpan: 1) {
+  display: inline-block;
+  float: none;
+  width: ((@gridColumnWidth) * @columnSpan) + (@gridGutterWidth * (@columnSpan - 2)) - 30;
+  margin-left: 0;
+}
+form.form-stacked {
+    input,
+    textarea {
+        // Default columns
+        &.span1     { .formStackedColumns(1); }
+        &.span2     { .formStackedColumns(2); }
+        &.span3     { .formStackedColumns(3); }
+        &.span4     { .formStackedColumns(4); }
+        &.span5     { .formStackedColumns(5); }
+        &.span6     { .formStackedColumns(6); }
+        &.span7     { .formStackedColumns(7); }
+        &.span8     { .formStackedColumns(8); }
+        &.span9     { .formStackedColumns(9); }
+        &.span10    { .formStackedColumns(10); }
+        &.span11    { .formStackedColumns(11); }
+        &.span12    { .formStackedColumns(12); }
+        &.span13    { .formStackedColumns(13); }
+        &.span14    { .formStackedColumns(14); }
+        &.span15    { .formStackedColumns(15); }
+        &.span16    { .formStackedColumns(16); }
+        }
+}
+
+form.find-commas {
+    textarea { height: 200px; }
+}
+
+div.commas {
+    .line:before { content: 'Line: ';}
+    .line:after {content: ', '; }
+    .char:before { content: 'Character: '; }
+}

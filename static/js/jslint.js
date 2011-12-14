@@ -6945,4 +6945,6 @@ klass:              do {
 }());
 
 
-exports.JSLINT = JSLINT;
+if (typeof(exports) !== 'undefined') {
+    exports.JSLINT = JSLINT;
+}
