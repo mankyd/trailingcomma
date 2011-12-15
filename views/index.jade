@@ -1,4 +1,7 @@
-h1 Trailing Comma,
+h1 
+    | Trailing Comma,
+    p Find trailing commas in your Javascript. Fix IE Fast.
+a(name="util")
 form.form-stacked.find-commas
     fieldset
         div.clearfix
@@ -9,3 +12,18 @@ form.form-stacked.find-commas
 
 div.commas
     dl
+
+a(name="about")
+h2 About
+    p
+        | This site is to help web developers overcome a massive headache when developing javascript.
+        | If you're not a webdeveloper, you can probably stop reading now. In Internet Explorer 6 and 
+        | 7, there is an easy to introduce javascript bug relating to commas. If, when defining an
+        | array or an object, you leave a trailing comma after the last item in your collection, IE
+        | will fail to parse you javascript file:
+    pre 
+        | var x = [1,2,3,]; //ERROR
+        | var y = {'a': 1, 'b': 2, 'c': 3,}; //ERROR
+    p
+        | Unfortunately, this mistake is very easy to make but very hard to track down in large
+        | javascript projects.

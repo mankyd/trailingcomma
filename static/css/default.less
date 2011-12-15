@@ -1,7 +1,7 @@
 @import 'bs/variables.less';
 
-body { background: #048; }
-.container { background: #eee; padding: 10px; box-shadow: 0 0 30px #111; }
+body { background: #048; padding-top: 40px;}
+.container.main { background: #eee; padding: 20px; width: @siteWidth - 40px; box-shadow: 0 0 10px #000; border-radius: 0 0 3px 3px; }
 
 // Grid style input sizes
 // This is a duplication of the main grid .columns() mixin, but subtracts 10px to account for input padding and border and 20px more for the form-stacked left-padding
@@ -34,7 +34,7 @@ form.form-stacked {
         }
 }
 
-form.find-commas {
+form.find-commas { padding-left: 0;
     textarea { height: 200px; }
 }
 
