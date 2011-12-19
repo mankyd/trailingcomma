@@ -1,6 +1,6 @@
 @import 'bs/variables.less';
 
-body { background: #048; padding-top: 40px;}
+body { background: #048; padding-top: 40px; margin-bottom: 40px; }
 .container.main { background: #eee; padding: 20px; width: @siteWidth - 40px; box-shadow: 0 0 10px #000; border-radius: 0 0 3px 3px; }
 
 // Grid style input sizes
@@ -47,3 +47,7 @@ div.commas {
     dt:nth-child(4n+3) { background: @grayLighter; }
     dd:nth-child(4n) { background: @grayLighter; }
 }
+
+.paypal-donate input { width: auto; height: auto; }
+
+div.api-key { text-align: center; border: 1px solid @gray; font-size: 48px; padding: 40px; font-weight: bold; margin-top: 40px; }

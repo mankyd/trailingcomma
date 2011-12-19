@@ -1,7 +1,6 @@
 h1 
     | Trailing Comma,
     p Find trailing commas in your Javascript. Fix IE Fast.
-a(name="util")
 form.form-stacked.find-commas
     fieldset
         div.clearfix
@@ -27,3 +26,51 @@ h2 About
     p
         | Unfortunately, this mistake is very easy to make but very hard to track down in large
         | javascript projects.
+
+
+a(name="donate")
+h2 Donate
+   p
+        | Countless working hours are wasted trying to debug trailing comma errors. My hope in providing
+        | this site is to spare those hours, saving developers time and frustration. Please consider
+        | donating a dollar or two (or more!) If this site has saves you even an hours worth of work
+        | this year, that can be a fair bit of money for such a trivial bug.
+   p
+        | As an added bonus, if you donate a dollar or more, you'll get an API key that will allow you 
+        | to a make simple web request and get back an easily digestible response containing info about
+        | trailing commas. Combine it with your test framework and be alerted immediately when you've
+        | checked in buggy Javascript.
+
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" class="paypal-donate">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="M4C4P2C9ESQXU">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
+a(name="api")
+h2 API
+   p
+        | The API for Trailing Comma is stupidly simply. POST your code in a parameter called <code>code</code>
+        | http://trailingcomma.com/check?key=&lt;API_KEY&gt; and it will return back a simple JSON array 
+        | containing data detailing any trailing commas it finds. If there are no trailing commas, 
+        | it will return an empty array. Your code should be posted in a parameter called "code".
+   p
+        | You can obtain an API key by <a href="#donate">donating just a dollar</a> (or more!) towards 
+        | the cost of running this service.
+   h3 Sample Request
+   pre
+        | POST /check?key=foobar HTTP/1.1
+        | Host: trailingcomma.com
+        | Content-Length: 10
+        | 
+        | code=[1,];
+   h3 Sample Response
+   pre
+        | HTTP/1.1 200 OK
+        | Date: Fri, 16 Dec 2011 23:59:59 GMT
+        | Content-Type: application/json
+        | Content-Length: 41
+        | 
+        | [{"line":1,"character":3,"code":"[1,];"}]
