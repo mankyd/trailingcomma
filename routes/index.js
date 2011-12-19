@@ -5,7 +5,7 @@
 
 var redis = require("redis");
 var rclient = redis.createClient(null,  null, {no_ready_check: true});
-rclient.auth('devel');
+//rclient.auth('devel');
 
 var find = require('../lib/finder').find;
 var markov = require('../lib/markov');
