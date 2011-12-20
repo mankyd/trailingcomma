@@ -18,7 +18,7 @@ exports.check = function(req, res) {
     if (!req.param('key')) {
         res.json(['no key error']);
     }
-    if (!req.param('code')) {
+    if (!req.param('code') && !req.raw_body) {
         res.json(['no code error'])
     }
     else {
@@ -27,7 +27,7 @@ exports.check = function(req, res) {
                 res.json(['invalid key error']);
             }
             else {
-                res.json(find(req.param('code')));
+                res.json(find(req.param('code', req.raw_body)));
             }
         });
     }
