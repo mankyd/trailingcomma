@@ -10,6 +10,8 @@ rclient.on("error", function (err) {
     console.log("Redis Error " + err);
 });
 
+exports.rclient = rclient;
+
 //rclient.auth('devel');
 
 var find = require('../lib/finder').find;
@@ -42,7 +44,11 @@ exports.check = function(req, res) {
 };
 
 exports.donated = function(req, res) {
-    var api_key = markov.generate(markov.BASE_ANALYSIS, 16, 16); 
+    var api_key = req.session.api_key;
+    if (!api_key) {
+        api_key = markov.generate(markov.BASE_ANALYSIS, 16, 16);
+        req.session.api_key = api_key;
+    }
     rclient.sadd('api_keys', api_key);
     res.render('donated.jade', {
         title: 'Thanks for the donation!',

@@ -6,6 +6,8 @@
 var express = require('express');
 var routes = require('./routes');
 var middleware = require('./middleware');
+var settings = require('./settings');
+var redis_store = require('connect-redis')(express);
 
 var app = module.exports = express.createServer();
 
@@ -15,17 +17,27 @@ app.configure(function(){
     app.set('views', __dirname + '/views');
     app.use(middleware.rawBodyParser());
     app.use(express.bodyParser());
+    app.use(express.cookieParser());
+    app.use(express.session({ secret: settings.session_secret, store: new redis_store}));
     app.use(express.methodOverride());
     app.use(app.router);
     app.use(express.static(__dirname + '/static'));
 });
 
 app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
+    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+    app.disable('tracking');
 });
 
 app.configure('production', function(){
-  app.use(express.errorHandler()); 
+    app.use(express.errorHandler()); 
+    app.enable('tracking');
+});
+
+app.dynamicHelpers({
+    tracking_enabled: function(req, res){
+        return app.enabled('tracking');
+    }
 });
 
 // Routes
