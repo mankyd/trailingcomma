@@ -31,7 +31,6 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', routes.index);
-app.get('/check', routes.check);
 app.post('/check', routes.check);
 app.get('/donated', routes.donated);
 app.post('/donated', routes.donated);

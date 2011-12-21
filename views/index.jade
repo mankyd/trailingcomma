@@ -52,10 +52,10 @@ h2 Donate
 a(name="api")
 h2 API
    p
-        | The API for Trailing Comma is stupidly simply. POST your code in a parameter called <code>code</code>
+        | The API for Trailing Comma is stupidly simply. POST your code as the body of your request to
         | http://trailingcomma.com/check?key=&lt;API_KEY&gt; and it will return back a simple JSON array 
         | containing data detailing any trailing commas it finds. If there are no trailing commas, 
-        | it will return an empty array. Your code should be posted in a parameter called "code".
+        | it will return an empty array.
    p
         | You can obtain an API key by <a href="#donate">donating just a dollar</a> (or more!) towards 
         | the cost of running this service.
@@ -63,9 +63,9 @@ h2 API
    pre
         | POST /check?key=foobar HTTP/1.1
         | Host: trailingcomma.com
-        | Content-Length: 10
+        | Content-Length: 11
         | 
-        | code=[1,];
+        | var x=[1,];
    h3 Sample Response
    pre
         | HTTP/1.1 200 OK
@@ -73,4 +73,8 @@ h2 API
         | Content-Type: application/json
         | Content-Length: 41
         | 
-        | [{"line":1,"character":3,"code":"[1,];"}]
+        | [{"line":1,"character":9,"code":"[1,];"}]
+   h3 Simple Command Line Validation via Curl
+   pre
+        | # curl -d @myfile.js http://localhost:3000/check?key=foobar
+        | []

@@ -5,6 +5,11 @@
 
 var redis = require("redis");
 var rclient = redis.createClient(null,  null, {no_ready_check: true});
+
+rclient.on("error", function (err) {
+    console.log("Redis Error " + err);
+});
+
 //rclient.auth('devel');
 
 var find = require('../lib/finder').find;
@@ -16,18 +21,21 @@ exports.index = function(req, res){
 
 exports.check = function(req, res) {
     if (!req.param('key')) {
-        res.json(['no key error']);
+        res.statusCode = 403;
+        res.json('No API key specified');
     }
-    if (!req.param('code') && !req.raw_body) {
-        res.json(['no code error'])
+    else if (!req.raw_body) {
+        res.statusCode = 400;
+        res.json('No code error')
     }
     else {
         rclient.sismember('api_keys', req.param('key'), function (err, reply) {
             if (!reply) {
-                res.json(['invalid key error']);
+                res.statusCode = 403;
+                res.json('Invalid API key');
             }
             else {
-                res.json(find(req.param('code', req.raw_body)));
+                res.json(find(req.raw_body));
             }
         });
     }
