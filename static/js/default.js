@@ -44,7 +44,7 @@ var found_commas = function(commas) {
         if (!alert_notfound.is(':visible')) {
             alert_notfound.fadeIn();
         }
-        alert_found.hide()();
+        alert_found.hide();
     }
 
 };
