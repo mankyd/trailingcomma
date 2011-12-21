@@ -11,11 +11,15 @@ form.form-stacked.find-commas
         p
             strong Danger, Will Robinson! 
             | Commas found! Check below.
-    div.pull-right.alert-message.success#alert_notfound(style="display: none;")
+    div.pull-right.alert-message.success#alert_not_found(style="display: none;")
         p
             strong You're code checks out. 
             | No commas to see here. Move along.
     input.btn.large.primary(type="submit", value="Find The Commas!")
+    div.alert-message.warn#alert_parse_error(style="display: none;")
+        p
+            strong A very bad thing happened.
+            | We couldn't entirely parse your code. Try running it in a web browser to check for syntax errors.
     
 div.well.commas(style="display: none;")
     dl

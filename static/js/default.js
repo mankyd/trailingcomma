@@ -4,11 +4,13 @@ $(function() {
         var form = $(evt.target);
         var result = JSLINT(form.find('textarea').val());
         var commas = [];
+        var parse_error = false;
         if (!result) {
             var i;
             var error;
             for (i = 0; i < JSLINT.errors.length; i++) {
                 error = JSLINT.errors[i];
+                console.log(error);
                 if (error && error.reason == "Unexpected ','.") {
                     commas[commas.length] = {
                         line: error.line,
@@ -16,17 +18,21 @@ $(function() {
                         code: error.evidence
                     };
                 }
+                else if (error === null) {
+                    parse_error = true;
+                }
             }
         }
-        found_commas(commas);
+        found_commas(commas, parse_error);
     });
 });
 
-var found_commas = function(commas) {
+var found_commas = function(commas, parse_error) {
     var i;
     var comma_list = $('.commas dl');
     var alert_found = $('#alert_found');
-    var alert_notfound = $('#alert_notfound');
+    var alert_not_found = $('#alert_not_found');
+    var alert_parse_error = $('#alert_parse_error');
 
     if (commas.length) {    
         comma_list.empty();
@@ -37,14 +43,20 @@ var found_commas = function(commas) {
         if (!alert_found.is(':visible')) {
             alert_found.fadeIn();
         }
-        alert_notfound.hide();
+        alert_not_found.hide();
     }
     else {
         $('.commas').slideUp();
-        if (!alert_notfound.is(':visible')) {
-            alert_notfound.fadeIn();
+        if (!parse_error && !alert_not_found.is(':visible')) {
+            alert_not_found.fadeIn();
         }
         alert_found.hide();
+    }
+    if (parse_error) {
+        alert_parse_error.fadeIn();
+    }
+    else {
+        alert_parse_error.hide();
     }
 
 };
