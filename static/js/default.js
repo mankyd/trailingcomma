@@ -23,14 +23,30 @@ $(function() {
 });
 
 var found_commas = function(commas) {
-    console.dir(commas);
-    console.dir(JSLINT.errors);
     var i;
     var comma_list = $('.commas dl');
-    comma_list.empty();
-    for (i = 0; i < commas.length; i++) {
-        add_comma(comma_list, commas[i]);
+    var alert_found = $('#alert_found');
+    var alert_notfound = $('#alert_notfound');
+
+    if (commas.length) {    
+        comma_list.empty();
+        for (i = 0; i < commas.length; i++) {
+            add_comma(comma_list, commas[i]);
+        }
+        $('.commas').fadeIn();
+        if (!alert_found.is(':visible')) {
+            alert_found.fadeIn();
+        }
+        alert_notfound.hide();
     }
+    else {
+        $('.commas').slideUp();
+        if (!alert_notfound.is(':visible')) {
+            alert_notfound.fadeIn();
+        }
+        alert_found.hide()();
+    }
+
 };
 
 var add_comma = function(list, comma) {

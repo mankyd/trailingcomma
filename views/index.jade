@@ -7,9 +7,17 @@ form.form-stacked.find-commas
             label(for="code_input") Your Code
             div.input
                 textarea.span16#code_input(name="code_input")
+    div.pull-right.alert-message.error#alert_found(style="display: none;")
+        p
+            strong Danger, Will Robinson! 
+            | Commas found! Check below.
+    div.pull-right.alert-message.success#alert_notfound(style="display: none;")
+        p
+            strong You're code checks out. 
+            | No commas to see here. Move along.
     input.btn.large.primary(type="submit", value="Find The Commas!")
-
-div.commas
+    
+div.well.commas(style="display: none;")
     dl
 
 a(name="about")
