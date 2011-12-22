@@ -50,12 +50,15 @@ exports.check = function(req, res) {
 
 exports.donated = function(req, res) {
     var verify = function(num_tries) {
+        if (num_tries <= 0) {
+            res.redirect('home');
+        }
+        if (!req.app.enabled('paypal_testing') && req.body.test_ipn === '1') {
+            res.redirect('home');
+        }
         ipn.verify(req.body, function(err, msg) {
             if (err && num_tries > 0) {
                 verify(num_tries-1);
-            }
-            else if (num_tries <= 0) {
-                res.redirect('home');
             }
             else {
                 if (!req.session.api_key) {

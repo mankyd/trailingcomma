@@ -1,4 +1,4 @@
-h1 
+h1
     | Trailing Comma,
     p Find trailing commas in your Javascript. Fix IE Fast.
 form.form-stacked.find-commas
@@ -9,18 +9,18 @@ form.form-stacked.find-commas
                 textarea.span16#code_input(name="code_input")
     div.pull-right.alert-message.error#alert_found(style="display: none;")
         p
-            strong Danger, Will Robinson! 
+            strong Danger, Will Robinson!
             | Commas found! Check below.
     div.pull-right.alert-message.success#alert_not_found(style="display: none;")
         p
-            strong You're code checks out. 
+            strong You're code checks out.
             | No commas to see here. Move along.
     input.btn.large.primary(type="submit", value="Find The Commas!")
     div.alert-message.warn#alert_parse_error(style="display: none;")
         p
             strong A very bad thing happened.
             | We couldn't entirely parse your code. Try running it in a web browser to check for syntax errors.
-    
+
 div.well.commas(style="display: none;")
     dl
 
@@ -32,7 +32,7 @@ h2 About
         | 7, there is an easy to introduce javascript bug relating to commas. If, when defining an
         | array or an object, you leave a trailing comma after the last item in your collection, IE
         | will fail to parse your javascript file:
-    pre 
+    pre
         | var x = [1,2,3,]; //ERROR
         | var y = {'a': 1, 'b': 2, 'c': 3,}; //ERROR
     p
@@ -48,27 +48,45 @@ h2 Donate
         | donating a dollar or two (or more!) If this site saves you even an hour's worth of work,
         | that's a considerable amount of frustation for such a small thing.
    p
-        | As an added bonus, if you donate a dollar or more, you'll get an API key that will allow you 
+        | As an added bonus, if you donate a dollar or more, you'll get an API key that will allow you
         | to a make simple web request and get back an easily digestible response containing info about
         | trailing commas. Combine it with your test framework and be alerted immediately when you've
         | checked in buggy Javascript.
 
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-<input type="hidden" name="cmd" value="_donations" />
-<input type="hidden" name="business" value="REKPPJYPHEMS6" />
-<input type="hidden" name="lc" value="US" />
-<input type="hidden" name="item_name" value="Trailing Comma" />
-<input type="hidden" name="no_note" value="0" />
-<input type="hidden" name="cn" value="Leave a note; say hello!" />
-<input type="hidden" name="no_shipping" value="1" />
-<input type="hidden" name="custom" value="#{session_id}" />
-<input type="hidden" name="return" value="https://trailingcomma.com/donated" />
-<input type="hidden" name="rm" value="2" />
-<input type="hidden" name="currency_code" value="USD" />
-<input type="hidden" name="bn" value="PP-DonationsBF:btn_donate_LG.gif:NonHosted" />
-<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" />
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
-</form>
+- if (paypal_testing)
+    <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" class="paypal-donate">
+    <input type="hidden" name="cmd" value="_donations" />
+    <input type="hidden" name="business" value="A6UE6ADBJN5YC" />
+    <input type="hidden" name="lc" value="US" />
+    <input type="hidden" name="item_name" value="Trailing Comma" />
+    <input type="hidden" name="no_note" value="0" />
+    <input type="hidden" name="cn" value="Leave a note; say hello!" />
+    <input type="hidden" name="no_shipping" value="1" />
+    <input type="hidden" name="custom" value="#{session_id}" />
+    <input type="hidden" name="return" value="http://localhost:3000/donated" />
+    <input type="hidden" name="rm" value="2" />
+    <input type="hidden" name="currency_code" value="USD" />
+    <input type="hidden" name="bn" value="PP-DonationsBF:btn_donate_LG.gif:NonHosted" />
+    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" />
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+    </form>
+-else
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" class="paypal-donate">
+    <input type="hidden" name="cmd" value="_donations" />
+    <input type="hidden" name="business" value="REKPPJYPHEMS6" />
+    <input type="hidden" name="lc" value="US" />
+    <input type="hidden" name="item_name" value="Trailing Comma" />
+    <input type="hidden" name="no_note" value="0" />
+    <input type="hidden" name="cn" value="Leave a note; say hello!" />
+    <input type="hidden" name="no_shipping" value="1" />
+    <input type="hidden" name="custom" value="#{session_id}" />
+    <input type="hidden" name="return" value="https://trailingcomma.com/donated" />
+    <input type="hidden" name="rm" value="2" />
+    <input type="hidden" name="currency_code" value="USD" />
+    <input type="hidden" name="bn" value="PP-DonationsBF:btn_donate_LG.gif:NonHosted" />
+    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" />
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+    </form>
 
 a(name="api")
 h2 API

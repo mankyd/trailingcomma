@@ -26,17 +26,22 @@ app.configure(function(){
 
 app.configure('development', function(){
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+    app.enable('paypal_testing');
     app.disable('tracking');
 });
 
 app.configure('production', function(){
     app.use(express.errorHandler()); 
+    app.disable('paypal_testing');
     app.enable('tracking');
 });
 
 app.dynamicHelpers({
     tracking_enabled: function(req, res){
         return app.enabled('tracking');
+    },
+    paypal_testing: function(req, res){
+        return app.enabled('paypal_testing');
     }
 });
 
