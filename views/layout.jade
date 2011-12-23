@@ -4,7 +4,7 @@ html
     title= title
     link(rel="icon", type="image/png", href="/i/favicon.png")
     -if (compressed_static)
-        link(rel="stylesheet",href="/c.css")
+        link(rel="stylesheet",href=static_url("/c.css"))
     -else
         link(rel="stylesheet",href=static_url("/css/bootstrap.min.1.4.0.css"))
         link(rel='stylesheet/less', type="text/css", href=static_url('/css/default.less'))
