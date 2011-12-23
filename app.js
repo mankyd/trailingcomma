@@ -27,21 +27,34 @@ app.configure(function(){
 app.configure('development', function(){
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
     app.enable('paypal_testing');
+    app.disable('compressed_static');
     app.disable('tracking');
 });
 
 app.configure('production', function(){
     app.use(express.errorHandler()); 
     app.disable('paypal_testing');
+    app.enable('compressed_static');
     app.enable('tracking');
 });
 
 app.dynamicHelpers({
-    tracking_enabled: function(req, res){
-        return app.enabled('tracking');
+    compressed_static: function() {
+        return app.enabled('compressed_static');
     },
     paypal_testing: function(req, res){
         return app.enabled('paypal_testing');
+    },
+    static_url: function(req, res) {
+        return function(url) {
+            if (app.disabled('compressed_static')) {
+                return url;
+            }
+            return settings.static_url + url;
+        };
+    },
+    tracking_enabled: function(req, res){
+        return app.enabled('tracking');
     }
 });
 
