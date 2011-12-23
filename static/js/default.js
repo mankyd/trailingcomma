@@ -1,10 +1,12 @@
 $(function() {
     $('form.find-commas').submit(function(evt) {
         evt.preventDefault();
+        _gaq.push(['_trackEvent', 'comma_finding', 'find_commas', 'home_page', 1])
         var form = $(evt.target);
         var result = JSLINT(form.find('textarea').val());
         var commas = [];
         var parse_error = false;
+
         if (!result) {
             var i;
             var error;
@@ -34,7 +36,9 @@ var found_commas = function(commas, parse_error) {
     var alert_not_found = $('#alert_not_found');
     var alert_parse_error = $('#alert_parse_error');
 
-    if (commas.length) {    
+    if (commas.length) {
+        _gaq.push(['_trackEvent', 'comma_finding', 'commas_found', 'home_page', commas.length])
+
         comma_list.empty();
         for (i = 0; i < commas.length; i++) {
             add_comma(comma_list, commas[i]);
@@ -46,6 +50,8 @@ var found_commas = function(commas, parse_error) {
         alert_not_found.hide();
     }
     else {
+        _gaq.push(['_trackEvent', 'comma_finding', 'code_ok', 'home_page', 1])
+
         $('.commas').slideUp();
         if (!parse_error && !alert_not_found.is(':visible')) {
             alert_not_found.fadeIn();
@@ -53,6 +59,7 @@ var found_commas = function(commas, parse_error) {
         alert_found.hide();
     }
     if (parse_error) {
+        _gaq.push(['_trackEvent', 'comma_finding', 'parser_error', 'home_page', 1])
         alert_parse_error.fadeIn();
     }
     else {
