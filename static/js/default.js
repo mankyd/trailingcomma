@@ -14,7 +14,7 @@ $(function() {
             debug     : true,
             devel     : true,
             eqeq      : true,
-            es5       : true,
+            //es5       : true,
             evil      : true,
             forin     : true,
             fragment  : true,
